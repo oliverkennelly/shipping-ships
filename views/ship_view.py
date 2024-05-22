@@ -119,8 +119,18 @@ def retrieve_ship(pk, url):
         query_results = db_cursor.fetchone()
 
         # Serialize Python list to JSON encoded string
-        dictionary_version_of_object = dict(query_results)
-        serialized_ship = json.dumps(dictionary_version_of_object)
+        hauler = {
+                "id": query_results['haulerId'],
+                "name": query_results['haulerName'],
+                "dock_id": query_results["dock_id"]
+            }
+        ship={
+            "id": query_results['id'],
+            "name": query_results['name'],
+            "hauler_id": query_results['hauler_id'],
+            "hauler": hauler
+        }
+        serialized_ship = json.dumps(ship)
 
     return serialized_ship
 
