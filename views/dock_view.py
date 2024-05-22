@@ -33,7 +33,7 @@ def delete_dock(pk):
     return True if number_of_rows_deleted > 0 else False
 
 
-def list_docks():
+def list_docks(url):
     # Open a connection to the database
     with sqlite3.connect("./shipping.db") as conn:
         conn.row_factory = sqlite3.Row
